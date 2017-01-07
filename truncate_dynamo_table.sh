@@ -42,6 +42,20 @@ do
   esac
 done
 
+which jq > /dev/null
+if [ $? -ne 0 ]; then
+  echo "The jq utility must be installed to run this script."
+  echo "See https://stedolan.github.io/jq/"
+  exit 1
+fi
+
+which aws > /dev/null
+if [ $? -ne 0 ]; then
+  echo "The AWS CLI must be installed to run this script."
+  echo "See https://aws.amazon.com/cli/"
+  exit 1
+fi
+
 if [ -z "$TABLE" ]; then
   echo "Table name is required (use the -t parameter)."
   exit 1
